@@ -21,7 +21,7 @@ def execute(command):
 	return data
 
 def get_dirs():
-    dirs = execute("sudo du " + LOG_PATH +" -d 1 | sort -n -r | awk '{print $2}'")
+    dirs = execute("sudo du " + LOG_PATH + " -d 1 | sort -n -r | awk '{print $2}'")
     list_dirs = dirs.split("\n")[1:-1]
 
     # select only the top n directories
@@ -34,9 +34,9 @@ def clean_dirs(time_limit):
 
 	# enter each directory and clean
 	for cdir in dirs:
-		print ("cleaning {}".format(cdir))
+		print ("cleaning {0}".format(cdir))
 		#command = "sudo find {}/ -type f -mtime {} -delete".format(cdir, time_limit)
-		command = "sudo find {}/ -type f -delete".format(cdir)
+		command = "sudo find {0}/ -type f -delete".format(cdir)
 		print (command)
 		response = execute(command)
 

@@ -34,10 +34,9 @@ def clean_dirs(time_limit):
 
 	# enter each directory and clean
 	for cdir in dirs:
-		print ("cleaning {0}".format(cdir))
-		#command = "sudo find {}/ -type f -mtime {} -delete".format(cdir, time_limit)
-		command = "sudo find {0}/ -type f -delete".format(cdir)
-		print (command)
+		#print ("cleaning {0}".format(cdir))
+		command = "sudo find {}/ -type f -mtime {} -delete".format(cdir, time_limit)
+		#print (command)
 		response = execute(command)
 
 def get_log_status():
@@ -79,21 +78,15 @@ if __name__ == "__main__":
 	if option.time_limits:
 		ORDER = [int(limit.strip()) for limit in option.time_limits.split(",")]
 
-	print (TOP_N)
-	print (DESIRED)
-	print (LOG_PATH)
-	print (ORDER)
-
 	status = get_log_status()
-	print (status, DESIRED)
 	after_cleanup = ""
 
 	if status > DESIRED:
-		#try:
-		after_cleanup = run_clean()
-		#except:
-			#print ('Cannot clean logs. Faced exception.')
-			#exit(0)
+		try:
+			after_cleanup = run_clean()
+		except:
+			print ('Cannot clean logs. Faced exception.')
+			exit(0)
 
 		if after_cleanup > DESIRED:
 			print ("Cleaned logs but could reduce much.")

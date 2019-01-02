@@ -21,7 +21,7 @@ def execute(command):
 	return data
 
 def get_dirs():
-    dirs = execute("sudo du {0} -d 1 | sort -n -r | awk '{print $2}'".format(LOG_PATH))
+    dirs = execute("sudo du " + LOG_PATH +" -d 1 | sort -n -r | awk '{print $2}'")
     list_dirs = dirs.split("\n")[1:-1]
 
     # select only the top n directories

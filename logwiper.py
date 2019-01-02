@@ -61,6 +61,6 @@ def run_clean():
 
 
 if __name__ == "__main__":
-	pass
-
-
+	parser = optparse.OptionParser()
+	parser.add_option('-g', '--cluster_name', dest="cluster_name", help="Cluster name as present on graphite, if not present, script will try to predict from hostname")
+	
